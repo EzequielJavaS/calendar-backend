@@ -23,6 +23,7 @@ app.use( express.json() );
 //Rutas
 //auth: crear, login, renovar token
 app.use('/api/auth', require('./routes/auth')) //Ruta donde va a estar lo relacionado con la atenticación
+app.use('/api/events', require('./routes/events')) //Ruta donde va a estar lo relacionado con los eventos
 
 // TODO CRUD: Eventos
 

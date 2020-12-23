@@ -47,6 +47,7 @@ const crearUsuario = async(req, res = response) => {
 
 const loginUsuario = async (req, res = response) => {
     const { email, password } = req.body;
+    console.log(req.body);
 
     try {
         //Revisamos si existe usuario con ese correo
