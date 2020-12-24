@@ -36,5 +36,3 @@ EventoSchema.method('toJSON', function() {
 
 
 module.exports = model('Evento', EventoSchema );
-
-//El use es el usuario que creo este registro. Hace referencia al esquema usuario

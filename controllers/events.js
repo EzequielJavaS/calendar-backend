@@ -2,10 +2,15 @@ const {response} = require('express');
 //Para grabar en la base de datos necesito poner la referencia al modelo
 const Evento = require('../models/Evento')
 
-const getEventos = (req, res = response) => {
+const getEventos = async (req, res = response) => {
+
+    //Devuelve los elementos de la colección Evento.
+    //populate llama a documentos de otras colecciones relaccionadas
+    const eventos = await Evento.find().populate('user', 'name __id');
+
     res.json({
         ok: true,
-        msg:'getEventos'
+        eventos
     })
 }
 
