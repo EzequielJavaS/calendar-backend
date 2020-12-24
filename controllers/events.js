@@ -1,4 +1,6 @@
 const {response} = require('express');
+//Para grabar en la base de datos necesito poner la referencia al modelo
+const Evento = require('../models/Evento')
 
 const getEventos = (req, res = response) => {
     res.json({
@@ -7,15 +9,29 @@ const getEventos = (req, res = response) => {
     })
 }
 
-const crearEvento = (req, res = response) => {
-    //Verificar que tenga el evento.
-    console.log(req.body);
-    
-    
-    res.json({
-        ok: true,
-        msg:'crearEvento'
-    })
+const crearEvento =async (req, res = response) => {
+
+    //Creamos una instancia del modelo
+    const evento = new Evento( req.body );
+   
+    try {
+        //Ponemos el id del usuario al evento ya que es necesario
+        evento.user = req.uid;
+        const eventoGuardado = await evento.save();
+
+        res.json({
+            ok: true,
+            evento: eventoGuardado
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        });
+        
+    }
 }
 
 const actualizarEvento = (req, res = response) => {
