@@ -9,7 +9,8 @@ const validarCampos = (req, res = response, next) => {
      if ( !errors.isEmpty()){
          return res.status(400).json({
              ok: false,
-             errors: errors.mapped()
+             errors: errors.mapped(),
+             msg: 'Debe de introducir un email correcto o una contraseña de + 5 dígitos'
          });
      }
      //Si hay un error se ejecutará en return del if y nunca se ejecutará el next()

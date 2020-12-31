@@ -12,7 +12,6 @@ dbConection();
 //CORS
 app.use(cors());
 
-
 //Directorio público
 app.use( express.static('public'));
 
